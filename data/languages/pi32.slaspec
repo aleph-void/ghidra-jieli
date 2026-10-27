@@ -27,16 +27,16 @@ define register offset=0x300 size=8 [ contextreg ];
 
 define context contextreg
 	# if/else blocks: the instructions after an if opener are conditional (cres) until both branches are used up
-	ifblock      = (0,0)
-	thenbranch   = (1,3)
-	elsebranch   = (4,6)
+	ifblock      = (0,0) noflow
+	thenbranch   = (1,3) noflow
+	elsebranch   = (4,6) noflow
 	closebracket = (7,7) noflow
 	# 0 while the wrapper constructors below are matched, 1 for the instruction itself
 	phase        = (14,14)
 	# rep loops: the number of body instructions still to come
-	repcount     = (8,11)
+	repcount     = (8,11) noflow
 	# the register that counts the rep loop down (0..15), 16: rep_count (a numeric count)
-	repreg       = (15,19)
+	repreg       = (15,19) noflow
 ;
 
 # PSR bits
@@ -51,18 +51,21 @@ define context contextreg
 #############################################################################
 # if / else blocks
 #
+# The block fields are noflow: a branch out of the middle of a block must not carry the block state to its target.  So every
+# step re-sets, for the next instruction only, what it needs.
+#
 # `ifs (nzcv == 0) {` makes the next A+1 instructions conditional on cres (the condition computed by the opener) and the B after
 # them conditional on its negation.  Context marks which instruction is which; objdump prints the braces, so does the display.
 #############################################################################
 theninst:^instruction is instruction
-[ thenbranch = thenbranch - 1; globalset(inst_next, thenbranch); ]
+[ thenbranch = thenbranch - 1; globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, ifblock); ]
 {
 	if (cres != 1) goto inst_next;
 	build instruction;
 }
 
 elseinst:^instruction is instruction
-[ elsebranch = elsebranch - 1; globalset(inst_next, elsebranch); ]
+[ elsebranch = elsebranch - 1; globalset(inst_next, elsebranch); globalset(inst_next, thenbranch); globalset(inst_next, ifblock); ]
 {
 	if (cres == 1) goto inst_next;
 	build instruction;

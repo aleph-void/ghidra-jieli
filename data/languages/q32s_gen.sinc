@@ -1545,9 +1545,7 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	p = p + 4;
 	<L17>
 	sp = ea + (cnt * 4);
-	if (((m >> 0) & 1) == 0) goto <nopc>;
 	return [newpc];
-	<nopc>
 }
 
 # {R} &= {N}  (2 bytes, mask f070 value b070)
@@ -1928,7 +1926,347 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 }
 
 # [--sp] = {L}  (4 bytes, mask fffa value f37a)
-:"[--sp] = "^lst22 is f4_1_1=0x1 & f4_3_15=0x1e6f & lst22
+:"[--sp] = "^lst22 is f4_1_1=0x1 & f4_3_15=0x1e6f & lst22 & f4_2_2=0
+{
+	local m:4 = lst22;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 16) & 1);
+	cnt = cnt + ((m >> 15) & 1);
+	cnt = cnt + ((m >> 14) & 1);
+	cnt = cnt + ((m >> 13) & 1);
+	cnt = cnt + ((m >> 12) & 1);
+	cnt = cnt + ((m >> 11) & 1);
+	cnt = cnt + ((m >> 10) & 1);
+	cnt = cnt + ((m >> 9) & 1);
+	cnt = cnt + ((m >> 8) & 1);
+	cnt = cnt + ((m >> 7) & 1);
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 18) & 1);
+	cnt = cnt + ((m >> 31) & 1);
+	cnt = cnt + ((m >> 30) & 1);
+	cnt = cnt + ((m >> 29) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	cnt = cnt + ((m >> 28) & 1);
+	cnt = cnt + ((m >> 27) & 1);
+	cnt = cnt + ((m >> 26) & 1);
+	cnt = cnt + ((m >> 25) & 1);
+	cnt = cnt + ((m >> 24) & 1);
+	cnt = cnt + ((m >> 23) & 1);
+	cnt = cnt + ((m >> 22) & 1);
+	cnt = cnt + ((m >> 21) & 1);
+	cnt = cnt + ((m >> 20) & 1);
+	cnt = cnt + ((m >> 19) & 1);
+	cnt = cnt + ((m >> 17) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 16) & 1) == 0) goto <L1>;
+	*:4 p = r0;
+	p = p + 4;
+	<L1>
+	if (((m >> 15) & 1) == 0) goto <L2>;
+	*:4 p = r1;
+	p = p + 4;
+	<L2>
+	if (((m >> 14) & 1) == 0) goto <L3>;
+	*:4 p = r2;
+	p = p + 4;
+	<L3>
+	if (((m >> 13) & 1) == 0) goto <L4>;
+	*:4 p = r3;
+	p = p + 4;
+	<L4>
+	if (((m >> 12) & 1) == 0) goto <L5>;
+	*:4 p = r4;
+	p = p + 4;
+	<L5>
+	if (((m >> 11) & 1) == 0) goto <L6>;
+	*:4 p = r5;
+	p = p + 4;
+	<L6>
+	if (((m >> 10) & 1) == 0) goto <L7>;
+	*:4 p = r6;
+	p = p + 4;
+	<L7>
+	if (((m >> 9) & 1) == 0) goto <L8>;
+	*:4 p = r7;
+	p = p + 4;
+	<L8>
+	if (((m >> 8) & 1) == 0) goto <L9>;
+	*:4 p = r8;
+	p = p + 4;
+	<L9>
+	if (((m >> 7) & 1) == 0) goto <L10>;
+	*:4 p = r9;
+	p = p + 4;
+	<L10>
+	if (((m >> 6) & 1) == 0) goto <L11>;
+	*:4 p = r10;
+	p = p + 4;
+	<L11>
+	if (((m >> 5) & 1) == 0) goto <L12>;
+	*:4 p = r11;
+	p = p + 4;
+	<L12>
+	if (((m >> 4) & 1) == 0) goto <L13>;
+	*:4 p = r12;
+	p = p + 4;
+	<L13>
+	if (((m >> 3) & 1) == 0) goto <L14>;
+	*:4 p = r13;
+	p = p + 4;
+	<L14>
+	if (((m >> 2) & 1) == 0) goto <L15>;
+	*:4 p = r14;
+	p = p + 4;
+	<L15>
+	if (((m >> 1) & 1) == 0) goto <L16>;
+	*:4 p = r15;
+	p = p + 4;
+	<L16>
+	if (((m >> 18) & 1) == 0) goto <L17>;
+	*:4 p = sp;
+	p = p + 4;
+	<L17>
+	if (((m >> 31) & 1) == 0) goto <L18>;
+	*:4 p = reti;
+	p = p + 4;
+	<L18>
+	if (((m >> 30) & 1) == 0) goto <L19>;
+	*:4 p = rete;
+	p = p + 4;
+	<L19>
+	if (((m >> 29) & 1) == 0) goto <L20>;
+	*:4 p = retx;
+	p = p + 4;
+	<L20>
+	if (((m >> 0) & 1) == 0) goto <L21>;
+	*:4 p = rets;
+	p = p + 4;
+	<L21>
+	if (((m >> 28) & 1) == 0) goto <L22>;
+	*:4 p = sr4;
+	p = p + 4;
+	<L22>
+	if (((m >> 27) & 1) == 0) goto <L23>;
+	*:4 p = psr;
+	p = p + 4;
+	<L23>
+	if (((m >> 26) & 1) == 0) goto <L24>;
+	*:4 p = cnum;
+	p = p + 4;
+	<L24>
+	if (((m >> 25) & 1) == 0) goto <L25>;
+	*:4 p = sr7;
+	p = p + 4;
+	<L25>
+	if (((m >> 24) & 1) == 0) goto <L26>;
+	*:4 p = sr8;
+	p = p + 4;
+	<L26>
+	if (((m >> 23) & 1) == 0) goto <L27>;
+	*:4 p = sr9;
+	p = p + 4;
+	<L27>
+	if (((m >> 22) & 1) == 0) goto <L28>;
+	*:4 p = sr10;
+	p = p + 4;
+	<L28>
+	if (((m >> 21) & 1) == 0) goto <L29>;
+	*:4 p = icfg;
+	p = p + 4;
+	<L29>
+	if (((m >> 20) & 1) == 0) goto <L30>;
+	*:4 p = usp;
+	p = p + 4;
+	<L30>
+	if (((m >> 19) & 1) == 0) goto <L31>;
+	*:4 p = ssp;
+	p = p + 4;
+	<L31>
+	if (((m >> 17) & 1) == 0) goto <L32>;
+	*:4 p = inst_start;
+	p = p + 4;
+	<L32>
+}
+
+:"[--sp] = "^lst22 is f4_1_1=0x1 & f4_3_15=0x1e6f & lst22 & f4_2_2=1 & f4_31_31=1
+{
+	local m:4 = lst22;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 16) & 1);
+	cnt = cnt + ((m >> 15) & 1);
+	cnt = cnt + ((m >> 14) & 1);
+	cnt = cnt + ((m >> 13) & 1);
+	cnt = cnt + ((m >> 12) & 1);
+	cnt = cnt + ((m >> 11) & 1);
+	cnt = cnt + ((m >> 10) & 1);
+	cnt = cnt + ((m >> 9) & 1);
+	cnt = cnt + ((m >> 8) & 1);
+	cnt = cnt + ((m >> 7) & 1);
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 18) & 1);
+	cnt = cnt + ((m >> 31) & 1);
+	cnt = cnt + ((m >> 30) & 1);
+	cnt = cnt + ((m >> 29) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	cnt = cnt + ((m >> 28) & 1);
+	cnt = cnt + ((m >> 27) & 1);
+	cnt = cnt + ((m >> 26) & 1);
+	cnt = cnt + ((m >> 25) & 1);
+	cnt = cnt + ((m >> 24) & 1);
+	cnt = cnt + ((m >> 23) & 1);
+	cnt = cnt + ((m >> 22) & 1);
+	cnt = cnt + ((m >> 21) & 1);
+	cnt = cnt + ((m >> 20) & 1);
+	cnt = cnt + ((m >> 19) & 1);
+	cnt = cnt + ((m >> 17) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 16) & 1) == 0) goto <L1>;
+	*:4 p = r0;
+	p = p + 4;
+	<L1>
+	if (((m >> 15) & 1) == 0) goto <L2>;
+	*:4 p = r1;
+	p = p + 4;
+	<L2>
+	if (((m >> 14) & 1) == 0) goto <L3>;
+	*:4 p = r2;
+	p = p + 4;
+	<L3>
+	if (((m >> 13) & 1) == 0) goto <L4>;
+	*:4 p = r3;
+	p = p + 4;
+	<L4>
+	if (((m >> 12) & 1) == 0) goto <L5>;
+	*:4 p = r4;
+	p = p + 4;
+	<L5>
+	if (((m >> 11) & 1) == 0) goto <L6>;
+	*:4 p = r5;
+	p = p + 4;
+	<L6>
+	if (((m >> 10) & 1) == 0) goto <L7>;
+	*:4 p = r6;
+	p = p + 4;
+	<L7>
+	if (((m >> 9) & 1) == 0) goto <L8>;
+	*:4 p = r7;
+	p = p + 4;
+	<L8>
+	if (((m >> 8) & 1) == 0) goto <L9>;
+	*:4 p = r8;
+	p = p + 4;
+	<L9>
+	if (((m >> 7) & 1) == 0) goto <L10>;
+	*:4 p = r9;
+	p = p + 4;
+	<L10>
+	if (((m >> 6) & 1) == 0) goto <L11>;
+	*:4 p = r10;
+	p = p + 4;
+	<L11>
+	if (((m >> 5) & 1) == 0) goto <L12>;
+	*:4 p = r11;
+	p = p + 4;
+	<L12>
+	if (((m >> 4) & 1) == 0) goto <L13>;
+	*:4 p = r12;
+	p = p + 4;
+	<L13>
+	if (((m >> 3) & 1) == 0) goto <L14>;
+	*:4 p = r13;
+	p = p + 4;
+	<L14>
+	if (((m >> 2) & 1) == 0) goto <L15>;
+	*:4 p = r14;
+	p = p + 4;
+	<L15>
+	if (((m >> 1) & 1) == 0) goto <L16>;
+	*:4 p = r15;
+	p = p + 4;
+	<L16>
+	if (((m >> 18) & 1) == 0) goto <L17>;
+	*:4 p = sp;
+	p = p + 4;
+	<L17>
+	if (((m >> 31) & 1) == 0) goto <L18>;
+	*:4 p = reti;
+	p = p + 4;
+	<L18>
+	if (((m >> 30) & 1) == 0) goto <L19>;
+	*:4 p = rete;
+	p = p + 4;
+	<L19>
+	if (((m >> 29) & 1) == 0) goto <L20>;
+	*:4 p = retx;
+	p = p + 4;
+	<L20>
+	if (((m >> 0) & 1) == 0) goto <L21>;
+	*:4 p = rets;
+	p = p + 4;
+	<L21>
+	if (((m >> 28) & 1) == 0) goto <L22>;
+	*:4 p = sr4;
+	p = p + 4;
+	<L22>
+	if (((m >> 27) & 1) == 0) goto <L23>;
+	*:4 p = psr;
+	p = p + 4;
+	<L23>
+	if (((m >> 26) & 1) == 0) goto <L24>;
+	*:4 p = cnum;
+	p = p + 4;
+	<L24>
+	if (((m >> 25) & 1) == 0) goto <L25>;
+	*:4 p = sr7;
+	p = p + 4;
+	<L25>
+	if (((m >> 24) & 1) == 0) goto <L26>;
+	*:4 p = sr8;
+	p = p + 4;
+	<L26>
+	if (((m >> 23) & 1) == 0) goto <L27>;
+	*:4 p = sr9;
+	p = p + 4;
+	<L27>
+	if (((m >> 22) & 1) == 0) goto <L28>;
+	*:4 p = sr10;
+	p = p + 4;
+	<L28>
+	if (((m >> 21) & 1) == 0) goto <L29>;
+	*:4 p = icfg;
+	p = p + 4;
+	<L29>
+	if (((m >> 20) & 1) == 0) goto <L30>;
+	*:4 p = usp;
+	p = p + 4;
+	<L30>
+	if (((m >> 19) & 1) == 0) goto <L31>;
+	*:4 p = ssp;
+	p = p + 4;
+	<L31>
+	if (((m >> 17) & 1) == 0) goto <L32>;
+	*:4 p = inst_start;
+	p = p + 4;
+	<L32>
+}
+
+:"[--sp] = "^lst22 is f4_1_1=0x1 & f4_3_15=0x1e6f & lst22 & f4_2_2=1 & f4_31_31=0
 {
 	local m:4 = lst22;
 	local cnt:4 = 0;
@@ -2318,6 +2656,12 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 {
 	rets = inst_next;
 	call tgt26;
+}
+
+# cnum = {R}  (4 bytes, mask f00fff9 value 600fb29)
+:"cnum = "^f4_28_31_attR0 is f4_0_0=0x1 & f4_3_15=0x1f65 & f4_24_27=0x6 & f4_28_31_attR0
+{
+	cnum = f4_28_31_attR0;
 }
 
 # goto {N}  (4 bytes, mask ffc0 value f3c0)
@@ -2955,13 +3299,11 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	p = p + 4;
 	<L17>
 	sp = ea + (cnt * 4);
-	if (((m >> 0) & 1) == 0) goto <nopc>;
 	return [newpc];
-	<nopc>
 }
 
 # {L} = [sp++]  (4 bytes, mask fffe value f37c)
-:^lst31^" = [sp++]" is f4_1_15=0x79be & lst31
+:^lst31^" = [sp++]" is f4_1_15=0x79be & lst31 & f4_31_31=1
 {
 	local m:4 = lst31;
 	local cnt:4 = 0;
@@ -3048,9 +3390,96 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	p = p + 4;
 	<L16>
 	sp = ea + (cnt * 4);
-	if (((m >> 0) & 1) == 0) goto <nopc>;
 	return [newpc];
-	<nopc>
+}
+
+:^lst31^" = [sp++]" is f4_1_15=0x79be & lst31 & f4_31_31=0
+{
+	local m:4 = lst31;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 15) & 1);
+	cnt = cnt + ((m >> 14) & 1);
+	cnt = cnt + ((m >> 13) & 1);
+	cnt = cnt + ((m >> 12) & 1);
+	cnt = cnt + ((m >> 11) & 1);
+	cnt = cnt + ((m >> 10) & 1);
+	cnt = cnt + ((m >> 9) & 1);
+	cnt = cnt + ((m >> 8) & 1);
+	cnt = cnt + ((m >> 7) & 1);
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	local p:4 = ea;
+	if (((m >> 1) & 1) == 0) goto <L1>;
+	sp = *:4 p;
+	p = p + 4;
+	<L1>
+	if (((m >> 15) & 1) == 0) goto <L2>;
+	reti = *:4 p;
+	p = p + 4;
+	<L2>
+	if (((m >> 14) & 1) == 0) goto <L3>;
+	rete = *:4 p;
+	p = p + 4;
+	<L3>
+	if (((m >> 13) & 1) == 0) goto <L4>;
+	retx = *:4 p;
+	p = p + 4;
+	<L4>
+	if (((m >> 12) & 1) == 0) goto <L5>;
+	rets = *:4 p;
+	p = p + 4;
+	<L5>
+	if (((m >> 11) & 1) == 0) goto <L6>;
+	sr4 = *:4 p;
+	p = p + 4;
+	<L6>
+	if (((m >> 10) & 1) == 0) goto <L7>;
+	psr = *:4 p;
+	p = p + 4;
+	<L7>
+	if (((m >> 9) & 1) == 0) goto <L8>;
+	cnum = *:4 p;
+	p = p + 4;
+	<L8>
+	if (((m >> 8) & 1) == 0) goto <L9>;
+	sr7 = *:4 p;
+	p = p + 4;
+	<L9>
+	if (((m >> 7) & 1) == 0) goto <L10>;
+	sr8 = *:4 p;
+	p = p + 4;
+	<L10>
+	if (((m >> 6) & 1) == 0) goto <L11>;
+	sr9 = *:4 p;
+	p = p + 4;
+	<L11>
+	if (((m >> 5) & 1) == 0) goto <L12>;
+	sr10 = *:4 p;
+	p = p + 4;
+	<L12>
+	if (((m >> 4) & 1) == 0) goto <L13>;
+	icfg = *:4 p;
+	p = p + 4;
+	<L13>
+	if (((m >> 3) & 1) == 0) goto <L14>;
+	usp = *:4 p;
+	p = p + 4;
+	<L14>
+	if (((m >> 2) & 1) == 0) goto <L15>;
+	ssp = *:4 p;
+	p = p + 4;
+	<L15>
+	if (((m >> 0) & 1) == 0) goto <L16>;
+	local newpc:4 = *:4 p;
+	p = p + 4;
+	<L16>
+	sp = ea + (cnt * 4);
 }
 
 # {R} += {R} * {R}  (4 bytes, mask ffd0 value fe80)
@@ -3394,6 +3823,12 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	f4_28_31_attR0 = rets;
 }
 
+# {R} = retx  (4 bytes, mask f00fff9 value 200fb28)
+:^f4_28_31_attR0^" = retx" is f4_0_0=0x0 & f4_3_15=0x1f65 & f4_24_27=0x2 & f4_28_31_attR0
+{
+	f4_28_31_attR0 = retx;
+}
+
 # {R} = revs({R}.l)  (4 bytes, mask fff3 value fb32)
 :^f4_28_31_attR0^" = revs("^f4_24_27_attR0^".l)" is f4_0_1=0x2 & f4_4_15=0xfb3 & f4_28_31_attR0 & f4_24_27_attR0
 {
@@ -3459,6 +3894,12 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	setAdd(a, b, r);
 }
 
+# {R} = ssp  (4 bytes, mask f00fff9 value d00fb28)
+:^f4_28_31_attR0^" = ssp" is f4_0_0=0x0 & f4_3_15=0x1f65 & f4_24_27=0xd & f4_28_31_attR0
+{
+	f4_28_31_attR0 = ssp;
+}
+
 # {R} = uextra({R}, p:{N}, l:{N})  (4 bytes, mask ffe0 value fd80)
 :^f4_28_31_attR0^" = uextra("^f4_24_27_attR0^", p:"^f4_19_23_d^", l:"^f4_0_4_d^")" is f4_5_15=0x7ec & f4_28_31_attR0 & f4_24_27_attR0 & f4_19_23_d & f4_0_4_d
 {
@@ -3477,6 +3918,12 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 	local v:4 = f4_24_27_attR0;
 	local r:4 = (v >> p) & ((1 << l) - 1);
 	f4_28_31_attR0 = r;
+}
+
+# {R} = usp  (4 bytes, mask f00fff9 value c00fb28)
+:^f4_28_31_attR0^" = usp" is f4_0_0=0x0 & f4_3_15=0x1f65 & f4_24_27=0xc & f4_28_31_attR0
+{
+	f4_28_31_attR0 = usp;
 }
 
 # {R} = zcmp({R})  (4 bytes, mask ffff value fdea)
@@ -3978,6 +4425,12 @@ reg41: "sr10" is f6_1_1=1 { export sr10; }
 :"sr4"^" = "^f4_28_31_attR0 is f4_0_0=0x1 & f4_3_15=0x1f65 & f4_24_27=0x4 & f4_28_31_attR0
 {
 	sr4 = f4_28_31_attR0;
+}
+
+# {S} = {R}  (4 bytes, mask f00fff9 value 700fb29)
+:"sr7"^" = "^f4_28_31_attR0 is f4_0_0=0x1 & f4_3_15=0x1f65 & f4_24_27=0x7 & f4_28_31_attR0
+{
+	sr7 = f4_28_31_attR0;
 }
 
 # call {N}  (6 bytes, mask ffc0 value ff80)

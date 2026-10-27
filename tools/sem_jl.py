@@ -28,6 +28,7 @@ PRINTED = {('ifs', '=='): 'eq', ('ifs', '!='): 'ne', ('if', '>='): 'cs', ('if', 
            ('ifs', '>='): 'ge', ('ifs', '<'): 'lt', ('ifs', '>'): 'gt', ('ifs', '<='): 'le'}
 ALL = []
 EXTRA_PATS = []
+PCFLAG = None      # set by gen_jl: True/False when the register list of the form is known to contain pc / not
 GEN = None
 
 PRELUDE = '''
@@ -550,11 +551,28 @@ def lists(c, form, s):
         c.emit('<%s>' % lab)
     if post in ('++',):
         c.emit('%s = ea + (cnt * 4);' % c.wr(base))
-    if pc_pop:
-        c.emit('if (((m >> %d) & 1) == 0) goto <nopc>;' % uni.index('pc'))
+    if pc_pop and PCFLAG is not False:
+        always = PCFLAG is True or pc_always(c.form['tokens'][int(lst[1:])]['fit'])
+        if not always:
+            c.emit('if (((m >> %d) & 1) == 0) goto <nopc>;' % uni.index('pc'))
         c.emit('%s [newpc];' % ('return' if base == 'sp' else 'goto'))
-        c.emit('<nopc>')
+        if not always:
+            c.emit('<nopc>')
     return '', body(c)
+
+
+def pc_always(fit):
+    """True when every register list this fit describes contains pc (so the instruction always transfers control)."""
+    t = fit['type']
+    if t == 'const':
+        return 'pc' in fit['val']
+    if t == 'mask':
+        return 'pc' in fit['const']
+    if t == 'table':
+        return all(v is None or 'pc' in v for v in fit['map'].values())
+    if t == 'sel':
+        return all(pc_always(f) for f in fit['cases'].values())
+    return False
 
 
 def reg_rank(nm):

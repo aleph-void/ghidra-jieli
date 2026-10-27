@@ -482,6 +482,44 @@ def target_roles(form):
     return roles
 
 
+def pc_variants(n, fit):
+    """Static cases of a register-list fit: [(pattern parts, list contains pc)].  A pop of pc is a return/jump, which the flow
+    analysis needs to see as unconditional, so such forms are emitted once with the pc bit set and once clear."""
+    t = fit['type']
+    if t == 'const':
+        return [([], 'pc' in fit['val'])]
+    if t == 'mask':
+        if 'pc' in fit['const']:
+            return [([], True)]
+        for b, nm in fit['names'].items():
+            if nm == 'pc':
+                f = G.fld(n, int(b), int(b), 'u')
+                return [(['%s=1' % f], True), (['%s=0' % f], False)]
+        return [([], False)]
+    if t == 'table':
+        vals = [v for v in fit['map'].values() if v is not None]
+        if all('pc' in v for v in vals):
+            return [([], True)]
+        if not any('pc' in v for v in vals):
+            return [([], False)]
+        bits = fit['bits']
+        for i, b in enumerate(bits):
+            has = {int(k): ('pc' in v) for k, v in fit['map'].items() if v is not None}
+            for inv in (0, 1):
+                if all(h == (((k >> i) & 1) ^ inv == 1) for k, h in has.items()):
+                    f = G.fld(n, b, b, 'u')
+                    return [(['%s=%d' % (f, 1 ^ inv)], True), (['%s=%d' % (f, inv)], False)]
+        raise SystemExit('a register-list table mixes pc and non-pc entries with no single deciding bit')
+    if t == 'sel':
+        out = []
+        for a, sub in sorted((int(k), v) for k, v in fit['cases'].items()):
+            sp = bit_pat(n, fit['bits'], a)
+            for pat, flag in pc_variants(n, sub):
+                out.append((sp + pat, flag))
+        return out
+    return [([], False)]
+
+
 def dup_op(n, o):
     """A second use of one operand symbol in a constructor needs its own symbol."""
     nw = Op()
@@ -587,17 +625,29 @@ def gen_form(form, sem):
         disp_text = '^' + disp_text
     for o in ops:
         shown[o.disp] += 1
-    res = sem(form, ops, uni, G)
-    if res is None:
-        return None
-    act, body = res
-    for x in sem_jl_extra():
-        if x not in pats:
-            pats.append(x)
-    head = ':'
-    if ARCH == 'pi32':
-        pats.insert(0, 'phase=1')
-    return '%s%s is %s%s\n{\n%s}\n' % (head, disp_text, ' & '.join(pats) if pats else 'epsilon', ('\n[ %s ]' % act) if act else '', body)
+    ltoks = [t for t in form['tokens'] if t['kind'] == 'L']
+    variants = pc_variants(n, ltoks[0]['fit']) if ltoks else [([], None)]
+    # merge variants that differ only in a bit pattern but have the same flag and cover everything (sel cases): keep them separate
+    outs = []
+    import sem_jl
+    for vpat, flag in variants:
+        sem_jl.PCFLAG = flag
+        sem_jl.EXTRA_PATS.clear()
+        res = sem(form, ops, uni, G)
+        if res is None:
+            return None
+        act, body = res
+        p2 = list(pats)
+        for x in sem_jl_extra():
+            if x not in p2:
+                p2.append(x)
+        for x in vpat:
+            if x not in p2:
+                p2.append(x)
+        if ARCH == 'pi32':
+            p2.insert(0, 'phase=1')
+        outs.append(':%s is %s%s\n{\n%s}\n' % (disp_text, ' & '.join(p2) if p2 else 'epsilon', ('\n[ %s ]' % act) if act else '', body))
+    return '\n'.join(outs)
 
 
 def emit(sem):
