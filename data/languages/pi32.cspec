@@ -63,7 +63,6 @@
               <register name="r12"/>
               <register name="r13"/>
               <register name="r14"/>
-              <register name="r15"/>
       </unaffected>
 
       <output>
