@@ -323,7 +323,7 @@ def compile_form(c, form):
         c.emit('*:1 ta = 0xff;')
         return '', body(c)
     m = re.fullmatch(r'\[--sp\] = ' + ATOM, s)
-    if m:
+    if m and not (m.group(1).startswith('@') and c.ops[int(m.group(1)[1:])].kind == 'L'):
         c.emit('sp = sp - 4;')
         c.emit('*:4 sp = %s;' % c.rd(m.group(1)))
         return '', body(c)
@@ -588,8 +588,8 @@ def blocks(c, form, s):
     m = re.fullmatch(r'(ifs?) \(nzcv (==|!=|>=|<=|>|<|\?\?) ' + ATOM + r'\) \{', s)
     if m:
         cond = nzcv_cond(c, form, m.group(1), m.group(2))
-        a = GEN.fld(n, 2, 3, 'u')
-        b = GEN.fld(n, 0, 1, 'u')
+        a = GEN.fld(n, 0, 1, 'u')       # then part: A+1 instructions (found with objdump: bits 1..0)
+        b = GEN.fld(n, 2, 3, 'u')       # else part: B instructions (bits 3..2)
         EXTRA_PATS.extend([a, b])
         act = ('ifblock = 1; thenbranch = %s + 1; elsebranch = %s; closebracket = 0; globalset(inst_next, ifblock); '
                'globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket);') % (a, b)
@@ -603,17 +603,17 @@ def blocks(c, form, s):
         return act, body(c)
     m = re.fullmatch(r'rep (@\d+|\d+), (@\d+|\d+) \{', s)
     if m:
-        # the body is the next N instructions; the counter is a register or a number
-        nt = [i for i, t in enumerate(form['tokens']) if t['kind'] == 'N']
-        ntok = 0
-        tokidx = {}
-        # token indices: first operand = body length (an N token), second = count (R or N)
+        # the body is the next N instructions (first operand); the count is a register (second operand, counted down in
+        # place) or a 5-bit number (counted in rep_count); both are in the context for the last body instruction
         toks = form['tokens']
-        len_k = 0
-        cnt_k = 1
-        cnt = c.rd(m.group(2))
-        act = 'repcount = %s; globalset(inst_next, repcount);' % lin_expr(c, len_k)
-        c.emit('rep_count = %s;' % (cnt if m.group(2).startswith('@') or True else cnt))
+        len_expr = lin_expr(c, 0)
+        act = 'repcount = %s; globalset(inst_next, repcount);' % len_expr
+        if toks[1]['kind'] == 'R':
+            act += ' repreg = %s; globalset(inst_next, repreg);' % lin_expr(c, 1)
+            c.emit('rep_count = %s;' % c.rd(m.group(2)))
+        else:
+            act += ' repreg = 16; globalset(inst_next, repreg);'
+            c.emit('rep_count = %s;' % c.rd(m.group(2)))
         c.emit('rep_start = inst_next;')
         return act, body(c)
     return None

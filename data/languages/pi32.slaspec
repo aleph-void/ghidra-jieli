@@ -35,6 +35,8 @@ define context contextreg
 	phase        = (14,14)
 	# rep loops: the number of body instructions still to come
 	repcount     = (8,11)
+	# the register that counts the rep loop down (0..15), 16: rep_count (a numeric count)
+	repreg       = (15,19)
 ;
 
 # PSR bits
@@ -98,19 +100,14 @@ ifinst:^instruction is ifblock=0 & instruction {}
 # context; the last body instruction decrements the counter and jumps back to the first one while it is not zero.
 #############################################################################
 repinst:^ifinst is repcount>1 & ifinst
-	[ repcount = repcount - 1; globalset(inst_next, repcount); ]
+	[ repcount = repcount - 1; globalset(inst_next, repcount); globalset(inst_next, repreg); ]
 {
 	build ifinst;
 }
 
-repinst:^ifinst is repcount=1 & ifinst
-	[ repcount = 0; globalset(inst_next, repcount); ]
-{
-	build ifinst;
-	rep_count = rep_count - 1;
-	if (rep_count == 0) goto inst_next;
-	goto [rep_start];
-}
+# last body instruction: the loop-back, one constructor per counter register (generated).  A body instruction repcount > 1 only
+# passes the count on.
+@include "pi32_rep.sinc"
 
 repinst:^ifinst is repcount=0 & ifinst {}
 

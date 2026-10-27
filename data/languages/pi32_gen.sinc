@@ -1676,64 +1676,360 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 # [--{R}] = {L}  (2 bytes, mask ff40 value c540)
 :"[--"^"sp"^"] = "^lst1 is phase=1 & f2_6_6=0x1 & f2_8_15=0xc5 & lst1
 {
-	sp = sp - 4;
-	*:4 sp = lst1;
+	local m:4 = lst1;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 7) & 1);
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 7) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 6) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 5) & 1) == 0) goto <L3>;
+	*:4 p = sfr2;
+	p = p + 4;
+	<L3>
+	if (((m >> 4) & 1) == 0) goto <L4>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L4>
+	if (((m >> 3) & 1) == 0) goto <L5>;
+	*:4 p = maccl;
+	p = p + 4;
+	<L5>
+	if (((m >> 2) & 1) == 0) goto <L6>;
+	*:4 p = macch;
+	p = p + 4;
+	<L6>
+	if (((m >> 1) & 1) == 0) goto <L7>;
+	*:4 p = rets;
+	p = p + 4;
+	<L7>
+	if (((m >> 0) & 1) == 0) goto <L8>;
+	*:4 p = psr;
+	p = p + 4;
+	<L8>
 }
 
 # [--{R}] = {L}  (2 bytes, mask ff44 value c504)
 :"[--"^"sp"^"] = "^lst2 is phase=1 & f2_2_2=0x1 & f2_6_6=0x0 & f2_8_15=0xc5 & lst2
 {
-	sp = sp - 4;
-	*:4 sp = lst2;
+	local m:4 = lst2;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 6) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 5) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 4) & 1) == 0) goto <L3>;
+	*:4 p = sfr2;
+	p = p + 4;
+	<L3>
+	if (((m >> 3) & 1) == 0) goto <L4>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L4>
+	if (((m >> 2) & 1) == 0) goto <L5>;
+	*:4 p = maccl;
+	p = p + 4;
+	<L5>
+	if (((m >> 1) & 1) == 0) goto <L6>;
+	*:4 p = macch;
+	p = p + 4;
+	<L6>
+	if (((m >> 0) & 1) == 0) goto <L7>;
+	*:4 p = psr;
+	p = p + 4;
+	<L7>
 }
 
 # [--{R}] = {L}  (2 bytes, mask ff64 value c520)
 :"[--"^"sp"^"] = "^lst3 is phase=1 & f2_2_2=0x0 & f2_5_6=0x1 & f2_8_15=0xc5 & lst3
 {
-	sp = sp - 4;
-	*:4 sp = lst3;
+	local m:4 = lst3;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 5) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 4) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 3) & 1) == 0) goto <L3>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L3>
+	if (((m >> 2) & 1) == 0) goto <L4>;
+	*:4 p = maccl;
+	p = p + 4;
+	<L4>
+	if (((m >> 1) & 1) == 0) goto <L5>;
+	*:4 p = macch;
+	p = p + 4;
+	<L5>
+	if (((m >> 0) & 1) == 0) goto <L6>;
+	*:4 p = psr;
+	p = p + 4;
+	<L6>
 }
 
 # [--{R}] = {L}  (2 bytes, mask ffe0 value c200)
 :"[--"^"sp"^"] = "^lst4 is phase=1 & f2_5_15=0x610 & lst4
 {
-	sp = sp - 4;
-	*:4 sp = lst4;
+	local m:4 = lst4;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 5) & 1);
+	cnt = cnt + ((m >> 6) & 1);
+	cnt = cnt + ((m >> 7) & 1);
+	cnt = cnt + ((m >> 8) & 1);
+	cnt = cnt + ((m >> 9) & 1);
+	cnt = cnt + ((m >> 10) & 1);
+	cnt = cnt + ((m >> 11) & 1);
+	cnt = cnt + ((m >> 12) & 1);
+	cnt = cnt + ((m >> 13) & 1);
+	cnt = cnt + ((m >> 14) & 1);
+	cnt = cnt + ((m >> 15) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 3) & 1) == 0) goto <L1>;
+	*:4 p = r0;
+	p = p + 4;
+	<L1>
+	if (((m >> 2) & 1) == 0) goto <L2>;
+	*:4 p = r1;
+	p = p + 4;
+	<L2>
+	if (((m >> 1) & 1) == 0) goto <L3>;
+	*:4 p = r2;
+	p = p + 4;
+	<L3>
+	if (((m >> 0) & 1) == 0) goto <L4>;
+	*:4 p = r3;
+	p = p + 4;
+	<L4>
+	if (((m >> 4) & 1) == 0) goto <L5>;
+	*:4 p = r4;
+	p = p + 4;
+	<L5>
+	if (((m >> 5) & 1) == 0) goto <L6>;
+	*:4 p = r5;
+	p = p + 4;
+	<L6>
+	if (((m >> 6) & 1) == 0) goto <L7>;
+	*:4 p = r6;
+	p = p + 4;
+	<L7>
+	if (((m >> 7) & 1) == 0) goto <L8>;
+	*:4 p = r7;
+	p = p + 4;
+	<L8>
+	if (((m >> 8) & 1) == 0) goto <L9>;
+	*:4 p = r8;
+	p = p + 4;
+	<L9>
+	if (((m >> 9) & 1) == 0) goto <L10>;
+	*:4 p = r9;
+	p = p + 4;
+	<L10>
+	if (((m >> 10) & 1) == 0) goto <L11>;
+	*:4 p = r10;
+	p = p + 4;
+	<L11>
+	if (((m >> 11) & 1) == 0) goto <L12>;
+	*:4 p = r11;
+	p = p + 4;
+	<L12>
+	if (((m >> 12) & 1) == 0) goto <L13>;
+	*:4 p = r12;
+	p = p + 4;
+	<L13>
+	if (((m >> 13) & 1) == 0) goto <L14>;
+	*:4 p = r13;
+	p = p + 4;
+	<L14>
+	if (((m >> 14) & 1) == 0) goto <L15>;
+	*:4 p = r14;
+	p = p + 4;
+	<L15>
+	if (((m >> 15) & 1) == 0) goto <L16>;
+	*:4 p = rets;
+	p = p + 4;
+	<L16>
 }
 
 # [--{R}] = {L}  (2 bytes, mask ff74 value c510)
 :"[--"^"sp"^"] = "^lst5 is phase=1 & f2_2_2=0x0 & f2_4_6=0x1 & f2_8_15=0xc5 & lst5
 {
-	sp = sp - 4;
-	*:4 sp = lst5;
+	local m:4 = lst5;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 4) & 1);
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 4) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 3) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 2) & 1) == 0) goto <L3>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L3>
+	if (((m >> 1) & 1) == 0) goto <L4>;
+	*:4 p = maccl;
+	p = p + 4;
+	<L4>
+	if (((m >> 0) & 1) == 0) goto <L5>;
+	*:4 p = psr;
+	p = p + 4;
+	<L5>
 }
 
 # [--{R}] = {L}  (2 bytes, mask fff4 value c580)
 :"[--"^"sp"^"] = "^lst6 is phase=1 & f2_2_2=0x0 & f2_4_15=0xc58 & lst6
 {
-	sp = sp - 4;
-	*:4 sp = lst6;
+	local m:4 = lst6;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 3) & 1);
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 3) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 2) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 1) & 1) == 0) goto <L3>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L3>
+	if (((m >> 0) & 1) == 0) goto <L4>;
+	*:4 p = psr;
+	p = p + 4;
+	<L4>
 }
 
 # [--{R}] = {L}  (2 bytes, mask fff6 value c502)
 :"[--"^"sp"^"] = "^lst7 is phase=1 & f2_1_2=0x1 & f2_4_15=0xc50 & lst7
 {
-	sp = sp - 4;
-	*:4 sp = lst7;
+	local m:4 = lst7;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 2) & 1);
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 2) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 1) & 1) == 0) goto <L2>;
+	*:4 p = rete;
+	p = p + 4;
+	<L2>
+	if (((m >> 0) & 1) == 0) goto <L3>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L3>
 }
 
 # [--{R}] = {L}  (2 bytes, mask fff7 value c501)
 :"[--"^"sp"^"] = "^lst8 is phase=1 & f2_0_2=0x1 & f2_4_15=0xc50 & lst8
 {
-	sp = sp - 4;
-	*:4 sp = lst8;
+	local m:4 = lst8;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 1) & 1);
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 1) & 1) == 0) goto <L1>;
+	*:4 p = reti;
+	p = p + 4;
+	<L1>
+	if (((m >> 0) & 1) == 0) goto <L2>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L2>
 }
 
 # [--{R}] = {L}  (2 bytes, mask ffff value c508)
 :"[--"^"sp"^"] = "^"{sfr3}" is phase=1 & f2_0_15=0xc508
 {
-	sp = sp - 4;
-	*:4 sp = 1;
+	local m:4 = 1;
+	local cnt:4 = 0;
+	cnt = cnt + ((m >> 0) & 1);
+	local ea:4 = sp;
+	ea = ea - (cnt * 4);
+	sp = ea;
+	local p:4 = ea;
+	if (((m >> 0) & 1) == 0) goto <L1>;
+	*:4 p = sfr3;
+	p = p + 4;
+	<L1>
 }
 
 # [{R} + {N}] = {R}  (2 bytes, mask f800 value 6800)
@@ -2154,8 +2450,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # if (nzcv < {N}) {  (2 bytes, mask fff0 value 330)
-:"if (nzcv < "^"0"^") {" is phase=1 & f2_4_15=0x33 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"if (nzcv < "^"0"^") {" is phase=1 & f2_4_15=0x33 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((psr & 2) == 0)) goto <no>;
@@ -2172,8 +2468,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # if (nzcv <= {N}) {  (2 bytes, mask fff0 value 390)
-:"if (nzcv <= "^"0"^") {" is phase=1 & f2_4_15=0x39 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"if (nzcv <= "^"0"^") {" is phase=1 & f2_4_15=0x39 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!(((psr & 2) == 0) || ((psr & 4) != 0))) goto <no>;
@@ -2190,8 +2486,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # if (nzcv > {N}) {  (2 bytes, mask fff0 value 380)
-:"if (nzcv > "^"0"^") {" is phase=1 & f2_4_15=0x38 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"if (nzcv > "^"0"^") {" is phase=1 & f2_4_15=0x38 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!(((psr & 2) != 0) && ((psr & 4) == 0))) goto <no>;
@@ -2208,8 +2504,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # if (nzcv >= {N}) {  (2 bytes, mask fff0 value 320)
-:"if (nzcv >= "^"0"^") {" is phase=1 & f2_4_15=0x32 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"if (nzcv >= "^"0"^") {" is phase=1 & f2_4_15=0x32 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((psr & 2) != 0)) goto <no>;
@@ -2248,8 +2544,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv != {N}) {  (2 bytes, mask fff0 value 310)
-:"ifs (nzcv != "^"0"^") {" is phase=1 & f2_4_15=0x31 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv != "^"0"^") {" is phase=1 & f2_4_15=0x31 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((psr & 4) == 0)) goto <no>;
@@ -2266,8 +2562,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv < {N}) {  (2 bytes, mask fff0 value 3b0)
-:"ifs (nzcv < "^"0"^") {" is phase=1 & f2_4_15=0x3b & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv < "^"0"^") {" is phase=1 & f2_4_15=0x3b & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((((psr >> 3) ^ psr) & 1) != 0)) goto <no>;
@@ -2284,8 +2580,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv <= {N}) {  (2 bytes, mask fff0 value 3d0)
-:"ifs (nzcv <= "^"0"^") {" is phase=1 & f2_4_15=0x3d & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv <= "^"0"^") {" is phase=1 & f2_4_15=0x3d & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!(((psr & 4) != 0) || ((((psr >> 3) ^ psr) & 1) != 0))) goto <no>;
@@ -2302,8 +2598,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv == {N}) {  (2 bytes, mask fff0 value 300)
-:"ifs (nzcv == "^"0"^") {" is phase=1 & f2_4_15=0x30 & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv == "^"0"^") {" is phase=1 & f2_4_15=0x30 & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((psr & 4) != 0)) goto <no>;
@@ -2320,8 +2616,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv > {N}) {  (2 bytes, mask fff0 value 3c0)
-:"ifs (nzcv > "^"0"^") {" is phase=1 & f2_4_15=0x3c & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv > "^"0"^") {" is phase=1 & f2_4_15=0x3c & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!(((psr & 4) == 0) && ((((psr >> 3) ^ psr) & 1) == 0))) goto <no>;
@@ -2338,8 +2634,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv >= {N}) {  (2 bytes, mask fff0 value 3a0)
-:"ifs (nzcv >= "^"0"^") {" is phase=1 & f2_4_15=0x3a & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv >= "^"0"^") {" is phase=1 & f2_4_15=0x3a & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((((psr >> 3) ^ psr) & 1) == 0)) goto <no>;
@@ -2362,8 +2658,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv ?? {N}) {  (2 bytes, mask ffc0 value 340)
-:"ifs (nzcv ?? "^"0"^") {" is phase=1 & f2_6_15=0xd & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv ?? "^"0"^") {" is phase=1 & f2_6_15=0xd & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	if (!((psr & 8) != 0)) goto <no>;
@@ -2372,8 +2668,8 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 }
 
 # ifs (nzcv ?? {N}) {  (2 bytes, mask fff0 value 3e0)
-:"ifs (nzcv ?? "^"0"^") {" is phase=1 & f2_4_15=0x3e & f2_2_3 & f2_0_1
-[ ifblock = 1; thenbranch = f2_2_3 + 1; elsebranch = f2_0_1; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
+:"ifs (nzcv ?? "^"0"^") {" is phase=1 & f2_4_15=0x3e & f2_0_1 & f2_2_3
+[ ifblock = 1; thenbranch = f2_0_1 + 1; elsebranch = f2_2_3; closebracket = 0; globalset(inst_next, ifblock); globalset(inst_next, thenbranch); globalset(inst_next, elsebranch); globalset(inst_next, closebracket); ]
 {
 	cres = 0;
 	cres = 1;
@@ -2542,15 +2838,15 @@ num69: res is f4_24_28=31 [ res = (31) + 0; ] { local v:4 = res; export v; }
 
 # rep {N}, {N} {  (2 bytes, mask ff00 value 200)
 :"rep "^num26^", "^num27^" {" is phase=1 & f2_8_15=0x2 & num26 & num27 & f2_5_7
-[ repcount = (f2_5_7 + 1); globalset(inst_next, repcount); ]
+[ repcount = (f2_5_7 + 1); globalset(inst_next, repcount); repreg = 16; globalset(inst_next, repreg); ]
 {
 	rep_count = num27;
 	rep_start = inst_next;
 }
 
 # rep {N}, {R} {  (2 bytes, mask ff80 value 100)
-:"rep "^num28^", "^reg20^" {" is phase=1 & f2_7_15=0x2 & num28 & reg20 & f2_3_5
-[ repcount = (f2_3_5 + 1); globalset(inst_next, repcount); ]
+:"rep "^num28^", "^reg20^" {" is phase=1 & f2_7_15=0x2 & num28 & reg20 & f2_3_5 & f2_0_2 & f2_6_6
+[ repcount = (f2_3_5 + 1); globalset(inst_next, repcount); repreg = (f2_0_2 + (f2_6_6 * 8)); globalset(inst_next, repreg); ]
 {
 	rep_count = reg20;
 	rep_start = inst_next;
