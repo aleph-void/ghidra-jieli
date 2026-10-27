@@ -21,7 +21,7 @@
             processorspec="pi32.pspec"
             id="pi32v2:LE:32:default">
     <description>JieLi's pi32v2 architecture</description>
-    <compiler name="default" spec="pi32.cspec" id="default" />
+    <compiler name="default" spec="pi32v2.cspec" id="default" />
   </language>
 
   <language processor="JieLi q32s"
@@ -33,6 +33,6 @@
             processorspec="pi32.pspec"
             id="q32s:LE:32:default">
     <description>JieLi's q32s architecture</description>
-    <compiler name="default" spec="pi32.cspec" id="default" />
+    <compiler name="default" spec="q32s.cspec" id="default" />
   </language>
 </language_definitions>

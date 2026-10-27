@@ -716,8 +716,8 @@ num24: res is f1_8_12 [ res = ((((f1_8_12) ^ 16) - 16) * 2) + 0; ] { local v:4 =
 bit25: res is f1_8_12 [ res = (1 << (f1_8_12)) ^ 0xffffffff; ] { local v:4 = res; export v; }
 num26: res is f1_8_12 & f1_8_12_z=0 [ res = (f1_8_12 * 0) + 32; ] { local v:4 = res; export v; }
 num26: res is f1_8_12 & (f1_8_12_z!=0) [ res = (f1_8_12) + 0; ] { local v:4 = res; export v; }
-num27: res is f1_8_12 [ res = ((f1_8_12) + 1) + 0; ] { local v:4 = res; export v; }
 num28: res is f1_4_7 [ res = (((f1_4_7) * 2) + 2) + 0; ] { local v:4 = res; export v; }
+num27s: " "^res is f1_8_12 [ res = ((f1_8_12) + 1) + 0; ] { local v:4 = res; export v; }
 enum29: ".l" is f2_4_4=0 { local c:4 = 0; export c; }
 enum29: ".h" is f2_4_4=1 { local c:4 = 1; export c; }
 enum30: ".b0" is f2_26_27=0 { local c:4 = 0; export c; }
@@ -739,19 +739,20 @@ num36: res is f2_24_24 & f2_16_19 & f2_24_24_z=0 & f2_16_19_z=0 [ res = (f2_24_2
 num36: res is f2_24_24 & f2_16_19 & (f2_24_24_z!=0 | f2_16_19_z!=0) [ res = ((f2_24_24 << 4) | f2_16_19) + 0; ] { local v:4 = res; export v; }
 num37: res is f2_24_25 & f2_16_19 & f2_24_25_z=0 & f2_16_19_z=0 [ res = (f2_24_25 * 0) + 64; ] { local v:4 = res; export v; }
 num37: res is f2_24_25 & f2_16_19 & (f2_24_25_z!=0 | f2_16_19_z!=0) [ res = ((f2_24_25 << 4) | f2_16_19) + 0; ] { local v:4 = res; export v; }
-enum38: ">>" is f2_27_27=0 { local c:4 = 0; export c; }
-enum38: ">>>" is f2_27_27=1 { local c:4 = 1; export c; }
 num39: res is f2_24_25 & f2_16_19 [ res = ((f2_24_25 << 4) | f2_16_19) + 0; ] { local v:4 = res; export v; }
-enum40: "(up)" is f2_26_26=0 & f2_20_20=0 { local c:4 = 0; export c; }
-enum40: "(even)" is f2_26_26=0 & f2_20_20=1 { local c:4 = 1; export c; }
-enum40: "(round)" is f2_26_26=1 & f2_20_20=0 { local c:4 = 2; export c; }
-enum40: "(zero)" is f2_26_26=1 & f2_20_20=1 { local c:4 = 3; export c; }
-enum41: ">>" is f2_16_16=0 { local c:4 = 0; export c; }
-enum41: ">>>" is f2_16_16=1 { local c:4 = 1; export c; }
-enum42: "(up)" is f2_17_18=0 { local c:4 = 0; export c; }
-enum42: "(even)" is f2_17_18=1 { local c:4 = 1; export c; }
-enum42: "(round)" is f2_17_18=2 { local c:4 = 2; export c; }
-enum42: "(zero)" is f2_17_18=3 { local c:4 = 3; export c; }
+enum38s: " >>" is f2_27_27=0 { local c:4 = 0; export c; }
+enum38s: " >>>" is f2_27_27=1 { local c:4 = 1; export c; }
+num39s: " "^res is f2_24_25 & f2_16_19 [ res = ((f2_24_25 << 4) | f2_16_19) + 0; ] { local v:4 = res; export v; }
+enum40s: " (up)" is f2_26_26=0 & f2_20_20=0 { local c:4 = 0; export c; }
+enum40s: " (even)" is f2_26_26=0 & f2_20_20=1 { local c:4 = 1; export c; }
+enum40s: " (round)" is f2_26_26=1 & f2_20_20=0 { local c:4 = 2; export c; }
+enum40s: " (zero)" is f2_26_26=1 & f2_20_20=1 { local c:4 = 3; export c; }
+enum41s: " >>" is f2_16_16=0 { local c:4 = 0; export c; }
+enum41s: " >>>" is f2_16_16=1 { local c:4 = 1; export c; }
+enum42s: " (up)" is f2_17_18=0 { local c:4 = 0; export c; }
+enum42s: " (even)" is f2_17_18=1 { local c:4 = 1; export c; }
+enum42s: " (round)" is f2_17_18=2 { local c:4 = 2; export c; }
+enum42s: " (zero)" is f2_17_18=3 { local c:4 = 3; export c; }
 num43: res is f2_16_19 [ res = ((((f2_16_19) ^ 8) - 8) * 4) + 0; ] { local v:4 = res; export v; }
 num44: res is f2_0_3 [ res = ((((f2_0_3) ^ 8) - 8) * 4) + 0; ] { local v:4 = res; export v; }
 num45: res is f2_16_19 [ res = ((((f2_16_19) ^ 8) - 8) * 2) + 0; ] { local v:4 = res; export v; }
@@ -861,49 +862,50 @@ num68: res is f2_16_19 & f2_16_19_z=0 [ res = (f2_16_19 * 0) + 16; ] { local v:4
 num68: res is f2_16_19 & (f2_16_19_z!=0) [ res = (f2_16_19) + 0; ] { local v:4 = res; export v; }
 enum69: ".l" is f2_19_19=0 { local c:4 = 0; export c; }
 enum69: ".h" is f2_19_19=1 { local c:4 = 1; export c; }
-enum70: "+|+|+|+" is f2_16_16=0 { local c:4 = 0; export c; }
-enum70: "-|-|-|-" is f2_16_16=1 { local c:4 = 1; export c; }
-enum71: "(usat)" is f2_0_0=0 { local c:4 = 0; export c; }
-enum71: "(ssat)" is f2_0_0=1 { local c:4 = 1; export c; }
+enum70s: " +|+|+|+" is f2_16_16=0 { local c:4 = 0; export c; }
+enum70s: " -|-|-|-" is f2_16_16=1 { local c:4 = 1; export c; }
+enum71s: " (usat)" is f2_0_0=0 { local c:4 = 0; export c; }
+enum71s: " (ssat)" is f2_0_0=1 { local c:4 = 1; export c; }
 num72: res is f2_1_4 & f2_24_27 [ res = ((f2_1_4 << 4) | f2_24_27) + 0; ] { local v:4 = res; export v; }
 enum73: ".l" is f2_16_16=0 { local c:4 = 0; export c; }
 enum73: ".h" is f2_16_16=1 { local c:4 = 1; export c; }
-enum74: "+|+" is f2_18_19=0 { local c:4 = 0; export c; }
-enum74: "+|-" is f2_18_19=1 { local c:4 = 1; export c; }
-enum74: "-|+" is f2_18_19=2 { local c:4 = 2; export c; }
-enum74: "-|-" is f2_18_19=3 { local c:4 = 3; export c; }
-enum75: "(usat)" is f2_0_2=0 { local c:4 = 0; export c; }
-enum75: "(ssat)" is f2_0_2=1 { local c:4 = 1; export c; }
-enum75: "(usat,x2)" is f2_0_2=2 { local c:4 = 2; export c; }
-enum75: "(ssat,x2)" is f2_0_2=3 { local c:4 = 3; export c; }
-enum75: "(uavg)" is f2_0_2=4 { local c:4 = 4; export c; }
-enum75: "(savg)" is f2_0_2=5 { local c:4 = 5; export c; }
-enum75: "(rnd,uavg)" is f2_0_2=6 { local c:4 = 6; export c; }
-enum75: "(rnd,savg)" is f2_0_2=7 { local c:4 = 7; export c; }
+enum74s: " +|+" is f2_18_19=0 { local c:4 = 0; export c; }
+enum74s: " +|-" is f2_18_19=1 { local c:4 = 1; export c; }
+enum74s: " -|+" is f2_18_19=2 { local c:4 = 2; export c; }
+enum74s: " -|-" is f2_18_19=3 { local c:4 = 3; export c; }
+num72s: " "^res is f2_1_4 & f2_24_27 [ res = ((f2_1_4 << 4) | f2_24_27) + 0; ] { local v:4 = res; export v; }
+enum75s: " (usat)" is f2_0_2=0 { local c:4 = 0; export c; }
+enum75s: " (ssat)" is f2_0_2=1 { local c:4 = 1; export c; }
+enum75s: " (usat,x2)" is f2_0_2=2 { local c:4 = 2; export c; }
+enum75s: " (ssat,x2)" is f2_0_2=3 { local c:4 = 3; export c; }
+enum75s: " (uavg)" is f2_0_2=4 { local c:4 = 4; export c; }
+enum75s: " (savg)" is f2_0_2=5 { local c:4 = 5; export c; }
+enum75s: " (rnd,uavg)" is f2_0_2=6 { local c:4 = 6; export c; }
+enum75s: " (rnd,savg)" is f2_0_2=7 { local c:4 = 7; export c; }
 enum76: ".l" is f2_3_3=0 { local c:4 = 0; export c; }
 enum76: ".h" is f2_3_3=1 { local c:4 = 1; export c; }
 enum77: ".l" is f2_2_2=0 { local c:4 = 0; export c; }
 enum77: ".h" is f2_2_2=1 { local c:4 = 1; export c; }
-enum78: "+|+|+|+" is f2_16_19=0 { local c:4 = 0; export c; }
-enum78: "+|+|+|-" is f2_16_19=1 { local c:4 = 1; export c; }
-enum78: "+|+|-|+" is f2_16_19=2 { local c:4 = 2; export c; }
-enum78: "+|+|-|-" is f2_16_19=3 { local c:4 = 3; export c; }
-enum78: "+|-|+|+" is f2_16_19=4 { local c:4 = 4; export c; }
-enum78: "+|-|+|-" is f2_16_19=5 { local c:4 = 5; export c; }
-enum78: "+|-|-|+" is f2_16_19=6 { local c:4 = 6; export c; }
-enum78: "+|-|-|-" is f2_16_19=7 { local c:4 = 7; export c; }
-enum78: "-|+|+|+" is f2_16_19=8 { local c:4 = 8; export c; }
-enum78: "-|+|+|-" is f2_16_19=9 { local c:4 = 9; export c; }
-enum78: "-|+|-|+" is f2_16_19=10 { local c:4 = 10; export c; }
-enum78: "-|+|-|-" is f2_16_19=11 { local c:4 = 11; export c; }
-enum78: "-|-|+|+" is f2_16_19=12 { local c:4 = 12; export c; }
-enum78: "-|-|+|-" is f2_16_19=13 { local c:4 = 13; export c; }
-enum78: "-|-|-|+" is f2_16_19=14 { local c:4 = 14; export c; }
-enum78: "-|-|-|-" is f2_16_19=15 { local c:4 = 15; export c; }
-enum79: "(usat)" is f2_0_1=0 { local c:4 = 0; export c; }
-enum79: "(ssat)" is f2_0_1=1 { local c:4 = 1; export c; }
-enum79: "(usat,x2)" is f2_0_1=2 { local c:4 = 2; export c; }
-enum79: "(ssat,x2)" is f2_0_1=3 { local c:4 = 3; export c; }
+enum78s: " +|+|+|+" is f2_16_19=0 { local c:4 = 0; export c; }
+enum78s: " +|+|+|-" is f2_16_19=1 { local c:4 = 1; export c; }
+enum78s: " +|+|-|+" is f2_16_19=2 { local c:4 = 2; export c; }
+enum78s: " +|+|-|-" is f2_16_19=3 { local c:4 = 3; export c; }
+enum78s: " +|-|+|+" is f2_16_19=4 { local c:4 = 4; export c; }
+enum78s: " +|-|+|-" is f2_16_19=5 { local c:4 = 5; export c; }
+enum78s: " +|-|-|+" is f2_16_19=6 { local c:4 = 6; export c; }
+enum78s: " +|-|-|-" is f2_16_19=7 { local c:4 = 7; export c; }
+enum78s: " -|+|+|+" is f2_16_19=8 { local c:4 = 8; export c; }
+enum78s: " -|+|+|-" is f2_16_19=9 { local c:4 = 9; export c; }
+enum78s: " -|+|-|+" is f2_16_19=10 { local c:4 = 10; export c; }
+enum78s: " -|+|-|-" is f2_16_19=11 { local c:4 = 11; export c; }
+enum78s: " -|-|+|+" is f2_16_19=12 { local c:4 = 12; export c; }
+enum78s: " -|-|+|-" is f2_16_19=13 { local c:4 = 13; export c; }
+enum78s: " -|-|-|+" is f2_16_19=14 { local c:4 = 14; export c; }
+enum78s: " -|-|-|-" is f2_16_19=15 { local c:4 = 15; export c; }
+enum79s: " (usat)" is f2_0_1=0 { local c:4 = 0; export c; }
+enum79s: " (ssat)" is f2_0_1=1 { local c:4 = 1; export c; }
+enum79s: " (usat,x2)" is f2_0_1=2 { local c:4 = 2; export c; }
+enum79s: " (ssat,x2)" is f2_0_1=3 { local c:4 = 3; export c; }
 num80: res is f2_1_4 & f2_24_27 [ res = ((((f2_1_4 << 4) | f2_24_27) ^ 128) - 128) + 0; ] { local v:4 = res; export v; }
 num81: res is f2_1_5 & f2_24_27 [ res = ((f2_1_5 << 4) | f2_24_27) + 0; ] { local v:4 = res; export v; }
 num82: res is f2_1_5 & f2_24_27 [ res = ((((f2_1_5 << 4) | f2_24_27) ^ 256) - 256) + 0; ] { local v:4 = res; export v; }
@@ -986,8 +988,8 @@ modimm91: res is f3_24_27=1 & f3_16_23 [ res = ((f3_16_23 << 16) | f3_16_23) | 0
 modimm91: res is f3_24_27=2 & f3_16_23 [ res = ((f3_16_23 << 24) | (f3_16_23 << 8)) | 0; ] { local v:4 = res; export v; }
 modimm91: res is f3_24_27=3 & f3_16_23 [ res = ((f3_16_23 << 24) | (f3_16_23 << 16) | (f3_16_23 << 8) | f3_16_23) | 0; ] { local v:4 = res; export v; }
 modimm91: res is f3_26_27!=0 & f3_16_22 & f3_23_27 [ res = ((((0x80 | f3_16_22) >> f3_23_27) | ((0x80 | f3_16_22) << (32 - f3_23_27))) & 0xffffffff); ] { local v:4 = res; export v; }
-enum92: "+" is f2_16_16=0 { local c:4 = 0; export c; }
-enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
+enum92s: " +" is f2_16_16=0 { local c:4 = 0; export c; }
+enum92s: " -" is f2_16_16=1 { local c:4 = 1; export c; }
 
 # nop: nop
 :"nop" is parallel_phase=1 & group=0 & parallel=0 & f1_0_12=0x0
@@ -2457,10 +2459,10 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # rep.i: rep {b} {n} {{
-:"rep "^num28^" "^num27^" {" is parallel_phase=1 & group=4 & parallel=0 & f1_0_3=0x0 & num27 & num28 & f1_4_7_r
+:"rep "^num28^num27s^" {" is parallel_phase=1 & group=4 & parallel=0 & f1_0_3=0x0 & num28 & num27s & f1_4_7_r
 [ repblock_endaddr = inst_start + 2 + ((f1_4_7_r * 2 + 2)); reploop=1; globalset(repblock_endaddr, reploop); replen=(f1_4_7_r * 2 + 2); globalset(repblock_endaddr, replen); ]
 {
-	rep_count = num27;
+	rep_count = num27s;
 }
 
 # li.half: {r}{n} = {m}
@@ -2917,15 +2919,15 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # shiftr.rpi.mode: {r} = {s} {n} {m} {p}
-:^f2_28_31_gpr^" = "^f2_21_23_pair^" "^enum38^" "^num39^" "^enum40 is parallel_phase=1 & group=7 & f2_0_11=0x1d2 & f2_28_31_gpr & f2_21_23_pair & enum38 & num39 & enum40
+:^f2_28_31_gpr^" = "^f2_21_23_pair^enum38s^num39s^enum40s is parallel_phase=1 & group=7 & f2_0_11=0x1d2 & f2_28_31_gpr & f2_21_23_pair & enum38s & num39s & enum40s
 {
-	f2_28_31_gpr = pi32v2_shiftr_rpi_mode(f2_28_31_gpr, f2_21_23_pair, enum38, num39, enum40);
+	f2_28_31_gpr = pi32v2_shiftr_rpi_mode(f2_28_31_gpr, f2_21_23_pair, enum38s, num39s, enum40s);
 }
 
 # shiftr.rpr.mode: {r} = {s} {n} {t} {m}
-:^f2_28_31_gpr^" = "^f2_21_23_pair^" "^enum41^" "^f2_24_27_gpr^" "^enum42 is parallel_phase=1 & group=7 & f2_0_11=0x1d3 & f2_19_20=0x0 & f2_28_31_gpr & f2_21_23_pair & enum41 & f2_24_27_gpr & enum42
+:^f2_28_31_gpr^" = "^f2_21_23_pair^enum41s^" "^f2_24_27_gpr^enum42s is parallel_phase=1 & group=7 & f2_0_11=0x1d3 & f2_19_20=0x0 & f2_28_31_gpr & f2_21_23_pair & f2_24_27_gpr & enum41s & enum42s
 {
-	f2_28_31_gpr = pi32v2_shiftr_rpr_mode(f2_28_31_gpr, f2_21_23_pair, enum41, f2_24_27_gpr, enum42);
+	f2_28_31_gpr = pi32v2_shiftr_rpr_mode(f2_28_31_gpr, f2_21_23_pair, enum41s, f2_24_27_gpr, enum42s);
 }
 
 # ror.pi: {r} <>= {n}
@@ -6349,9 +6351,9 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # add4.prr: {r} = {s} {n} {t}
-:^f2_29_31_pair^" = "^f2_20_23_gpr^" "^enum70^" "^f2_24_27_gpr is parallel_phase=1 & group=7 & f2_0_11=0x420 & f2_17_19=0x1 & f2_29_31_pair & f2_20_23_gpr & enum70 & f2_24_27_gpr
+:^f2_29_31_pair^" = "^f2_20_23_gpr^enum70s^" "^f2_24_27_gpr is parallel_phase=1 & group=7 & f2_0_11=0x420 & f2_17_19=0x1 & f2_29_31_pair & f2_20_23_gpr & f2_24_27_gpr & enum70s
 {
-	f2_29_31_pair = pi32v2_add4_prr(f2_29_31_pair, f2_20_23_gpr, enum70, f2_24_27_gpr);
+	f2_29_31_pair = pi32v2_add4_prr(f2_29_31_pair, f2_20_23_gpr, enum70s, f2_24_27_gpr);
 }
 
 # add4.rrr.rnd.uavg: {r} = {s} +|+|+|+ {t} (rnd, uavg)
@@ -6469,15 +6471,15 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # add.rrre: {r} = {s} + {t} {n}
-:^f2_28_31_gpr^" = "^f2_20_23_gpr^" + "^f2_24_27_gpr^" "^enum71 is parallel_phase=1 & group=7 & f2_3_11=0x87 & f2_19_19=0x0 & f2_28_31_gpr & f2_20_23_gpr & f2_24_27_gpr & enum71
+:^f2_28_31_gpr^" = "^f2_20_23_gpr^" + "^f2_24_27_gpr^enum71s is parallel_phase=1 & group=7 & f2_3_11=0x87 & f2_19_19=0x0 & f2_28_31_gpr & f2_20_23_gpr & f2_24_27_gpr & enum71s
 {
-	f2_28_31_gpr = pi32v2_add_rrre(f2_28_31_gpr, f2_20_23_gpr, f2_24_27_gpr, enum71);
+	f2_28_31_gpr = pi32v2_add_rrre(f2_28_31_gpr, f2_20_23_gpr, f2_24_27_gpr, enum71s);
 }
 
 # sub.rrre: {r} = {s} - {t} {n}
-:^f2_28_31_gpr^" = "^f2_20_23_gpr^" - "^f2_24_27_gpr^" "^enum71 is parallel_phase=1 & group=7 & f2_3_11=0x87 & f2_19_19=0x1 & f2_28_31_gpr & f2_20_23_gpr & f2_24_27_gpr & enum71
+:^f2_28_31_gpr^" = "^f2_20_23_gpr^" - "^f2_24_27_gpr^enum71s is parallel_phase=1 & group=7 & f2_3_11=0x87 & f2_19_19=0x1 & f2_28_31_gpr & f2_20_23_gpr & f2_24_27_gpr & enum71s
 {
-	f2_28_31_gpr = pi32v2_sub_rrre(f2_28_31_gpr, f2_20_23_gpr, f2_24_27_gpr, enum71);
+	f2_28_31_gpr = pi32v2_sub_rrre(f2_28_31_gpr, f2_20_23_gpr, f2_24_27_gpr, enum71s);
 }
 
 # add.rhrhi: {r}{n} = {s}{m} + {p}
@@ -6493,9 +6495,9 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # addsub.rhrhi.mode: {r} = {s}{n},{s}{m} {p} {q} {i}
-:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" "^enum74^" "^num72^" "^enum71 is parallel_phase=1 & group=7 & f2_6_11=0x13 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & enum74 & num72 & enum71 & f2_20_23_gpr2
+:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^enum74s^num72s^enum71s is parallel_phase=1 & group=7 & f2_6_11=0x13 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_20_23_gpr2 & enum74s & num72s & enum71s
 {
-	f2_28_31_gpr = pi32v2_addsub_rhrhi_mode(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, enum74, num72, enum71);
+	f2_28_31_gpr = pi32v2_addsub_rhrhi_mode(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, enum74s, num72s, enum71s);
 }
 
 # add.rhrhrh: {r}{n} = {s}{m} + {t}{p}
@@ -6511,15 +6513,15 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # add.rhrhrhe: {r}{n} = {s}{m} + {t}{p} {q}
-:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" + "^f2_24_27_gpr^enum64^" "^enum75 is parallel_phase=1 & group=7 & f2_3_11=0xa1 & f2_16_16=0x0 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum75
+:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" + "^f2_24_27_gpr^enum64^enum75s is parallel_phase=1 & group=7 & f2_3_11=0xa1 & f2_16_16=0x0 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum75s
 {
-	f2_28_31_gpr = pi32v2_add_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum75);
+	f2_28_31_gpr = pi32v2_add_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum75s);
 }
 
 # sub.rhrhrhe: {r}{n} = {s}{m} - {t}{p} {q}
-:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" - "^f2_24_27_gpr^enum64^" "^enum75 is parallel_phase=1 & group=7 & f2_3_11=0xa1 & f2_16_16=0x1 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum75
+:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" - "^f2_24_27_gpr^enum64^enum75s is parallel_phase=1 & group=7 & f2_3_11=0xa1 & f2_16_16=0x1 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum75s
 {
-	f2_28_31_gpr = pi32v2_sub_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum75);
+	f2_28_31_gpr = pi32v2_sub_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum75s);
 }
 
 # addadd.rrhrhrhrh.usat: {r} = {s}{n},{s}{m} +|+ {t}{p},{t}{q} (usat)
@@ -6715,9 +6717,9 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # addsub.ppp.mode: {r} = {s} {n} {t} {m}
-:^f2_29_31_pair^" = "^f2_21_23_pair^" "^enum78^" "^f2_25_27_pair^" "^enum75 is parallel_phase=1 & group=7 & f2_3_11=0xa6 & f2_29_31_pair & f2_21_23_pair & enum78 & f2_25_27_pair & enum75
+:^f2_29_31_pair^" = "^f2_21_23_pair^enum78s^" "^f2_25_27_pair^enum75s is parallel_phase=1 & group=7 & f2_3_11=0xa6 & f2_29_31_pair & f2_21_23_pair & f2_25_27_pair & enum78s & enum75s
 {
-	f2_29_31_pair = pi32v2_addsub_ppp_mode(f2_29_31_pair, f2_21_23_pair, enum78, f2_25_27_pair, enum75);
+	f2_29_31_pair = pi32v2_addsub_ppp_mode(f2_29_31_pair, f2_21_23_pair, enum78s, f2_25_27_pair, enum75s);
 }
 
 # all.eq.ppp.v: {r} = all({s} == {t}) (v)
@@ -7081,57 +7083,57 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # mul.rhrhrhe: {r}{n} = {s}{m} * {t}{p} {q}
-:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x150 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x150 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_mul_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_mul_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # madd.rhrhrhe: {r}{n} += {s}{m} * {t}{p} {q}
-:^f2_28_31_gpr^enum69^" += "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x152 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^enum69^" += "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x152 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_madd_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_madd_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # msub.rhrhrhe: {r}{n} -= {s}{m} * {t}{p} {q}
-:^f2_28_31_gpr^enum69^" -= "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x153 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^enum69^" -= "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x153 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_msub_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_msub_rhrhrhe(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # mul.rrhrhe: {r} = {s}{n} * {t}{m} {p}
-:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x154 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x154 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_mul_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_mul_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # madd.rrhrhe: {r} += {s}{n} * {t}{m} {p}
-:^f2_28_31_gpr^" += "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x156 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^" += "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x156 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_madd_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_madd_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # msub.rrhrhe: {r} -= {s}{n} * {t}{m} {p}
-:^f2_28_31_gpr^" -= "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^" "^enum79 is parallel_phase=1 & group=7 & f2_2_11=0x157 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79
+:^f2_28_31_gpr^" -= "^f2_20_23_gpr^enum63^" * "^f2_24_27_gpr^enum64^enum79s is parallel_phase=1 & group=7 & f2_2_11=0x157 & f2_28_31_gpr & f2_20_23_gpr & enum63 & f2_24_27_gpr & enum64 & enum79s
 {
-	f2_28_31_gpr = pi32v2_msub_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79);
+	f2_28_31_gpr = pi32v2_msub_rrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum63, f2_24_27_gpr, enum64, enum79s);
 }
 
 # mul2.rrhrhrhrhe: {r} = {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x0 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_28_31_gpr^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x0 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_28_31_gpr = pi32v2_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_28_31_gpr = pi32v2_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # madd.mul2.rrhrhrhrhe: {r} += {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_28_31_gpr^" += "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x2 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_28_31_gpr^" += "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x2 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_28_31_gpr = pi32v2_madd_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_28_31_gpr = pi32v2_madd_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # msub.mul2.rrhrhrhrhe: {r} -= {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_28_31_gpr^" -= "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x3 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_28_31_gpr^" -= "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x56 & f2_18_19=0x3 & f2_28_31_gpr & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_28_31_gpr = pi32v2_msub_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_28_31_gpr = pi32v2_msub_mul2_rrhrhrhrhe(f2_28_31_gpr, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # sum.u.prhrhrhrh: {r} = sum({s}{n},{s}{m} *|* {t}{p},{t}{q}) (u)
@@ -7171,21 +7173,21 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # mul2.prhrhrhrhe: {r} = {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_29_31_pair^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x0 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_29_31_pair^" = "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x0 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_29_31_pair = pi32v2_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_29_31_pair = pi32v2_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # madd.mul2.prhrhrhrhe: {r} += {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_29_31_pair^" += "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x2 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_29_31_pair^" += "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x2 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_29_31_pair = pi32v2_madd_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_29_31_pair = pi32v2_madd_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # msub.mul2.prhrhrhrhe: {r} -= {s}{n},{s}{m} *|* {t}{p},{t}{q} {i}
-:^f2_29_31_pair^" -= "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^" "^enum79 is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x3 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & enum79 & f2_20_23_gpr2 & f2_24_27_gpr2
+:^f2_29_31_pair^" -= "^f2_20_23_gpr^enum64^","^f2_20_23_gpr2^enum73^" *|* "^f2_24_27_gpr^enum76^","^f2_24_27_gpr2^enum77^enum79s is parallel_phase=1 & group=7 & f2_4_11=0x57 & f2_18_19=0x3 & f2_28_28=0x0 & f2_29_31_pair & f2_20_23_gpr & enum64 & enum73 & f2_24_27_gpr & enum76 & enum77 & f2_20_23_gpr2 & f2_24_27_gpr2 & enum79s
 {
-	f2_29_31_pair = pi32v2_msub_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79);
+	f2_29_31_pair = pi32v2_msub_mul2_prhrhrhrhe(f2_29_31_pair, f2_20_23_gpr, enum64, enum73, f2_24_27_gpr, enum76, enum77, enum79s);
 }
 
 # mul4.u.prr: {r} = {s} *|*|*|* {t} (u)
@@ -7387,9 +7389,9 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # addsub.pqq.sat: {r} = {s} {n} {m} {p}
-:^f2_29_31_pair^" = "^pairregs83^" "^enum74^" "^pairregs84^" "^enum71 is parallel_phase=1 & group=7 & f2_6_11=0x11 & f2_29_31_pair & pairregs83 & enum74 & pairregs84 & enum71
+:^f2_29_31_pair^" = "^pairregs83^enum74s^" "^pairregs84^enum71s is parallel_phase=1 & group=7 & f2_6_11=0x11 & f2_29_31_pair & pairregs83 & pairregs84 & enum74s & enum71s
 {
-	f2_29_31_pair = pi32v2_addsub_pqq_sat(f2_29_31_pair, enum74, enum71);
+	f2_29_31_pair = pi32v2_addsub_pqq_sat(f2_29_31_pair, enum74s, enum71s);
 }
 
 # beq.ri: if ({r} == {i}) goto {n}
@@ -7927,9 +7929,9 @@ enum92: "-" is f2_16_16=1 { local c:4 = 1; export c; }
 }
 
 # addsub.rhrhi.sat: {r}{n} = {s}{m} {o} {p} {q}
-:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^" "^enum92^" "^num72^" "^enum71 is parallel_phase=1 & group=7 & f2_5_11=0x25 & f2_17_17=0x1 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & enum92 & num72 & enum71
+:^f2_28_31_gpr^enum69^" = "^f2_20_23_gpr^enum63^enum92s^num72s^enum71s is parallel_phase=1 & group=7 & f2_5_11=0x25 & f2_17_17=0x1 & f2_28_31_gpr & enum69 & f2_20_23_gpr & enum63 & enum92s & num72s & enum71s
 {
-	f2_28_31_gpr = pi32v2_addsub_rhrhi_sat(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, enum92, num72, enum71);
+	f2_28_31_gpr = pi32v2_addsub_rhrhi_sat(f2_28_31_gpr, enum69, f2_20_23_gpr, enum63, enum92s, num72s, enum71s);
 }
 
 # sat8.u.rr: {r} = sat8({s}) (u)

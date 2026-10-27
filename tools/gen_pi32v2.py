@@ -476,12 +476,37 @@ def gen_entry(e, sem):
                 else:
                     dparts.append(o.disp)
                     used_disp.add(o.disp)
+    # a whitespace-only literal in front of a table symbol is folded into that table's text (a spaced variant): Ghidra
+    # otherwise prints a stray copy of an earlier literal at the end of the instruction
+    out_parts = []
+    replaced = []
+    k = 0
+    while k < len(dparts):
+        if dparts[k] == '" "' and k + 1 < len(dparts) and re.match(r'(enum|num)\d+$', dparts[k + 1]):
+            base = dparts[k + 1]
+            sp = base + 's'
+            if sp not in G.tables:
+                G.tables[sp] = [re.sub(r'^%s: res is' % base, '%s: " "^res is' % sp, re.sub(r'^%s: "' % base, '%s: " ' % sp, l)) for l in G.tables[base]]
+            out_parts.append(sp)
+            replaced.append((base, sp))
+            k += 2
+            continue
+        out_parts.append(dparts[k])
+        k += 1
+    dparts = out_parts
+    pats = [x for x in pats]
+    for dp in dparts:
+        if re.match(r'(enum|num)\d+s$', dp) and dp not in pats:
+            pats = [x for x in pats if x != dp[:-1]] + [dp]
     disp_text = '^'.join(dparts)
     if not dparts:
         disp_text = '^""'
     if not (dparts and dparts[0].startswith('"')) :
         disp_text = '^' + disp_text if not disp_text.startswith('^') else disp_text
     actions, body = sem(e, ops, G)
+    for base, sp in replaced:
+        body = re.sub(r'\b%s\b' % base, sp, body)
+        actions = re.sub(r'\b%s\b' % base, sp, actions) if actions else actions
     for x in getattr(G, 'extra_pats', []):
         if x not in pats:
             pats.append(x)
@@ -508,6 +533,21 @@ def emit(sem):
         out.append(';\n')
     for att, names in G.attach.items():
         out.append('attach variables [ %s ] [ %s ];\n' % (' '.join(names), ' '.join(ATTACH[att])))
+    # tables nothing refers to (the unspaced twin of a spaced variant) are dropped
+    used = set()
+    text = '\n'.join(cons)
+    changed = True
+    while changed:
+        changed = False
+        for sym, lines in G.tables.items():
+            if sym in used:
+                continue
+            if re.search(r'\b%s\b' % re.escape(sym), text):
+                used.add(sym)
+                text += '\n' + '\n'.join(l.split(' is ', 1)[1] if ' is ' in l else '' for l in lines) + '\n' + '\n'.join(l.split(' is ', 1)[0] for l in lines)
+                changed = True
+    for sym in [k for k in G.tables if k not in used]:
+        del G.tables[sym]
     out.append('\n')
     import sem_pi32v2 as S
     out.append(S.FLAG_DEFS)
