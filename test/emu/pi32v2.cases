@@ -1,0 +1,43 @@
+# name <TAB> assembly (; = newline) <TAB> machine code (hex, JieLi assembler output) <TAB> initial state <TAB> expected state
+add_rrr_flags_none	r8 = r9 + r10	b4e0908a00000000	r9=5,r10=7,psr=0	r8=c,psr=0
+add_carry_zero	r8 = r9 + r10	b4e0908a00000000	r9=ffffffff,r10=1,psr=0	r8=0,psr=6
+add_signed_overflow	r8 = r9 + r10	b4e0908a00000000	r9=7fffffff,r10=1,psr=0	r8=80000000,psr=9
+sub_borrow_negative	r8 = r9 - r10	b4e0928a00000000	r9=3,r10=5,psr=0	r8=fffffffe,psr=8
+sub_equal_no_borrow	r8 = r9 - r10	b4e0928a00000000	r9=5,r10=5,psr=0	r8=0,psr=6
+and_rrr	r8 = r9 & r10	90e1928a00000000	r9=f0f0,r10=ff00	r8=f000
+or_xor	r8 = r9 | r10 ; r7 = r9 ^ r10	90e1908a90e1917a00000000	r9=f0f0,r10=ff00	r8=fff0,r7=0ff0
+lsl_imm	r8 = r9 << 4	c0e1948000000000	r9=12345678	r8=23456780
+lsr_imm	r8 = r9 >> 4	c0e1948800000000	r9=12345678	r8=01234567
+asr_imm_negative	r8 = r9 >>> 4	c0e1948c00000000	r9=80000000	r8=f8000000
+ror_imm	r8 = r9 <> 8	c4e1988000000000	r9=12345678	r8=78123456
+mul_low	r8 = r9 * r10	f0e1908a00000000	r9=10000,r10=10001	r8=10000
+mul_u64	r3_r2 = r4 * r5 (u)	f8e1402500000000	r4=ffffffff,r5=ffffffff	r2=1,r3=fffffffe
+mul_s64	r3_r2 = r4 * r5 (s)	f8e1403500000000	r4=ffffffff,r5=2	r2=fffffffe,r3=ffffffff
+div_u	r8 = r9 / r10 (u)	f4e1908a00000000	r9=64,r10=7	r8=e
+mov_imm_neg	r8 = -5	48e0fbff00000000	-	r8=fffffffb
+half_h	r8.h = 0x1234	18e0341200000000	r8=ffffffff	r8=1234ffff
+half_l	r8.l = 0x1234	08e0341200000000	r8=ffffffff	r8=ffff1234
+ext_b_s	r8 = r9.b0 (s)	b8e1219000000000	r9=1f0	r8=fffffff0
+ext_l_u	r8 = r9.l (u)	b8e1409000000000	r9=abcd1234	r8=1234
+clz	r8 = clz(r9)	80e1008900000000	r9=10000	r8=f
+store_load_word	[r1+4] = r2 ; r3 = [r1+4]	9261136100000000	r1=2000,r2=deadbeef	r3=deadbeef,n4:2004=deadbeef
+load_byte_signed	r3 = b[r1+1] (s) ; r4 = b[r1+1] (u)	54ee11301c4100000000	r1=2000,n4:2000=00008000	r3=ffffff80,r4=80
+load_half_signed	r3 = h[r1+2] (s) ; r4 = h[r1+2] (u)	54ed12301c6100000000	r1=2000,n4:2000=8001ffff	r3=ffff8001,r4=8001
+store_byte_half	b[r1+0] = r2 ; h[r1+2] = r3	9a409b6100000000	r1=2000,r2=12345678,r3=9abcdef0,n4:2000=ffffffff	n4:2000=def0ff78
+post_increment_load	r3 = [r1++=4]	130500000000	r1=2000,n4:2000=cafebabe	r3=cafebabe,r1=2004
+sp_relative_store	[sp+8] = r2 ; r3 = [sp+8]	8222032200000000	sp=3000,r2=11223344	r3=11223344,n4:3008=11223344
+push_pop_regs	[--sp] = {r3-r0} ; r0 = 0 ; r1 = 0 ; r2 = 0 ; r3 = 0 ; {r3-r0} = [sp++]	60044020412042204320400400000000	sp=3000,r0=a,r1=b,r2=c,r3=d	r0=a,r1=b,r2=c,r3=d,sp=3000,n4:2ff0=a,n4:2ff4=b,n4:2ff8=c,n4:2ffc=d
+branch_taken	if (r1 == 0) goto L1 ; r0 = 1 ; L1: ; r2 = 2	01414021422200000000	r0=0,r1=0	r0=0,r2=2
+branch_not_taken	if (r1 == 0) goto L1 ; r0 = 1 ; L1: ; r2 = 2	01414021422200000000	r0=0,r1=5	r0=1,r2=2
+branch_cmp_unsigned	if (r1 < r2) goto L1 ; r0 = 1 ; L1: ; r3 = 3	82e901104021432300000000	r0=0,r1=1,r2=ffffffff	r0=0,r3=3
+branch_cmp_signed	ifs (r1 < r2) goto L1 ; r0 = 1 ; L1: ; r3 = 3	82ed01104021432300000000	r0=0,r1=1,r2=ffffffff	r0=1,r3=3
+if_block_then	if (r1 == r2) { ; r0 = 1 ; } else { ; r0 = 2 ; }	11e800124021402200000000	r1=5,r2=5,r0=0	r0=1
+if_block_else	if (r1 == r2) { ; r0 = 1 ; } else { ; r0 = 2 ; }	11e800124021402200000000	r1=5,r2=6,r0=0	r0=2
+rep_imm	r0 = 0 ; rep 3 { ; r0 += 1 ; }	40200082088100000000	r0=77	r0=3
+bitfield	r8 = uextra(r9, p:8, l:4) ; r7 = sextra(r9, p:8, l:4)	b8e11094b7e1119400000000	r9=f00	r8=f,r7=ffffffff
+insert	r8 <= insert(r9, p:8, l:8)	a8e1209400000000	r8=11223344,r9=ffffffaa	r8=1122aa44
+call_sets_rets	call L1 ; r0 = 1 ; L1: ; r2 = 2	01814021422200000000	r0=0	r0=0,r2=2
+stm_ldm	[r1+] = {r5-r4} ; {r7-r6} = [r1+]	21eb300001ebc00000000000	r1=2000,r4=aa,r5=bb	n4:2000=aa,n4:2004=bb,r6=aa,r7=bb,r1=2000
+parallel_store_old	r0 = r1 * r2 # ; [r3+0] = r0	f0f11002b06000000000	r0=7,r1=3,r2=4,r3=2000	r0=c,n4:2000=7
+parallel_load_overwritten	r0 = r1 * r2 # ; r0 = [r3+0]	f0f11002306000000000	r0=7,r1=3,r2=4,r3=2000,n4:2000=99	r0=c
+XFAIL_add_wrong	r8 = r9 + r10	b4e0908a00000000	r9=5,r10=7	r8=d
