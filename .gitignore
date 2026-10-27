@@ -2,3 +2,4 @@
 *.lock
 *.jar
 __pycache__/
+*.report.json
